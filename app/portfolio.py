@@ -1,12 +1,12 @@
 import pandas as pd
 import chromadb
+import os
 import uuid
 
 
 class Portfolio:
-    def __init__(self, file_path="app\\resource\\my_portfolio.csv"):
-        self.file_path = file_path
-        self.data = pd.read_csv(file_path)
+    def __init__(self):
+        self.data = pd.read_csv("my_portfolio.csv")
         self.chroma_client = chromadb.PersistentClient('vectorstore')
         self.collection = self.chroma_client.get_or_create_collection(name="portfolio")
 
