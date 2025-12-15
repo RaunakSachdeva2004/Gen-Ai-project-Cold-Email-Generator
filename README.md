@@ -1,6 +1,10 @@
 # 📧 Cold Mail Generator
 Cold email generator for services company using groq, langchain and streamlit. It allows users to input the URL of a company's careers page. The tool then extracts job listings from that page and generates personalized cold emails. These emails include relevant portfolio links sourced from a vector database, based on the specific job descriptions. 
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://genai-cold-email-generatorr.streamlit.app/)
+
+**[View Live Demo](https://genai-cold-email-generatorr.streamlit.app/)**
+
 **Imagine a scenario:**
 
 - Nike needs a Principal Software Engineer and is spending time and resources in the hiring process, on boarding, training etc
