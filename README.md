@@ -2,7 +2,8 @@
 
 A Generative AI application designed to help software services companies and freelancers automate their cold outreach. By analyzing a potential client's job posting URL, this tool identifies their specific needs and generates a personalized cold email that showcases relevant projects from your portfolio.
 
-#### Live Demo: https://genai-cold-email-generatorr.streamlit.app/
+🚀 **[Live Demo](https://genai-cold-email-generatorr.streamlit.app/)**
+
 
 ## 📖 Overview
 
