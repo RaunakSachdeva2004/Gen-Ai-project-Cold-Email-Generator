@@ -1,100 +1,107 @@
-# 🦜🔗 RAG YouTube Chatbot Using LangChain
+# 📧 Cold Email Generator
 
-A powerful Retrieval-Augmented Generation (RAG) application that allows users to "chat" with any YouTube video. By simply providing a video URL, the system processes the transcript and lets you ask questions, receiving accurate answers based specifically on the video's content.
+A Generative AI application designed to help software services companies and freelancers automate their cold outreach. By analyzing a potential client's job posting URL, this tool identifies their specific needs and generates a personalized cold email that showcases relevant projects from your portfolio.
 
 ## 📖 Overview
 
-This project leverages LangChain to orchestrate a RAG pipeline. It extracts transcripts from YouTube videos, chunks the text, creates vector embeddings, and stores them in a FAISS vector database. When a user asks a question, the system retrieves the most relevant context from the video and uses a Large Language Model (LLM) to generate a precise answer.
+The Cold Email Generator streamlines the business development process. Instead of sending generic templates, this tool:
+
+- Scrapes the job description from a provided URL.
+- Analyzes the requirements using an LLM.
+- Matches those requirements with the most relevant case studies from your vector database (`my_portfolio.csv`).
+- Generates a tailored email that positions your services as the perfect solution.
 
 ## ✨ Key Features
 
-- **🎥 YouTube Transcript Loading:** Automatically fetches and processes captions from YouTube videos.
-- **🧠 Intelligent Text Splitting:** Uses recursive character splitting to maintain context across chunks.
-- **🔍 Vector Search:** Implements FAISS (Facebook AI Similarity Search) for high-speed, local similarity search.
-- **🤖 LLM Integration:** Supports integration with top-tier LLMs via OpenRouter or Google Gemini.
-- **💬 Interactive UI:** Built with Streamlit for a seamless, chat-like experience.
-- **💾 Session Memory:** Maintains conversation history within the session.
+- **⚡ Ultra-Fast Generation**: Powered by Groq's LPU inference engine for near-instant email generation.
+- **🧠 Context-Aware**: Extracts specific skills and keywords from job descriptions to ensure relevance.
+- **📂 Portfolio Integration**: Dynamically pulls the most relevant projects from your portfolio to back up your claims.
+- **🕸️ Web Scraping**: Automatically fetches content from career pages using LangChain loaders.
+- **🎨 Clean UI**: Built with Streamlit for an easy-to-use interactive interface.
 
 ## 🛠️ Tech Stack
 
-- **Language:** Python
-- **Orchestration:** LangChain
-- **Frontend:** Streamlit
-- **Vector Store:** FAISS
-- **Embeddings:** HuggingFace / OpenAI / Google Generative AI
-- **Utilities:** youtube-transcript-api, python-dotenv
+- **Frontend**: Streamlit
+- **LLM Engine**: Groq (using Llama 3)
+- **Orchestration**: LangChain
+- **Vector Database**: ChromaDB
+- **Data Source**: CSV (Portfolio Data)
 
 ## 🚀 Getting Started
 
-Follow these instructions to set up the project on your local machine.
+Follow these steps to set up the project locally.
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- Git
+- Python 3.10 or higher
+- A Groq Cloud API Key
 
 ### Installation
 
-#### 1. Clone the Repository
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/RaunakSachdeva2004/Gen-Ai-project-Cold-Email-Generator.git
+   cd Gen-Ai-project-Cold-Email-Generator
+   ```
 
-```bash
-git clone https://github.com/RaunakSachdeva2004/RAG-Youtube-Chatbot-Using-Langchain.git
-cd RAG-Youtube-Chatbot-Using-Langchain
-```
-
-
-## 2. Create a Virtual Environment (Recommended)
-
-### Windows
-```bash
+## Set up Environment
+  ```bash
+# Create virtual environment
 python -m venv venv
+
+# Activate (Windows)
 venv\Scripts\activate
-```
 
-## 3. macOS/Linux
-
-```bash
-python3 -m venv venv
+# Activate (macOS/Linux)
 source venv/bin/activate
 ```
 
 ## 3. Install Dependencies
-```bash
+``` bash
 pip install -r requirements.txt
 ```
 
-## 4. Set Up Environment Variables
-Create a .env file in the root directory of the project. You will need an API key for the LLM service you intend to use.
+## 4. Configure API Keys
 
-### .env file content
+Create a .env file in the root directory and add your Groq API key:
+```bash
+GROQ_API_KEY=your_groq_api_key_here
+```
 
-### If using OpenRouter
-OPENROUTER_API_KEY=your_openrouter_api_key_here
+## 🏃‍♂️ Usage
 
-### If using Google Gemini
-GOOGLE_API_KEY=your_google_api_key_here
+- Prepare Your Portfolio
 
+Update my_portfolio.csv with your own projects, tech stacks, and links. This is the data the AI uses to prove your expertise.
 
+- Run the Application
+```bash
+  streamlit run app/main.py
+  ```
+## 3. Generate Emails
 
-#### To use the Chatbot:
+- Open the local Streamlit URL (usually http://localhost:8501).
 
-- Paste a valid YouTube video URL into the sidebar input field.
-- Click the "Process Video" button.
-- Wait for the system to download the transcript and build the vector index.
-- Once processing is complete, type your question in the chat input box and hit Enter!
+- Paste the URL of a job posting (e.g., from a company's career page).
 
-  ## 🧩 How It Works
-- Ingestion: The app uses YoutubeLoader to get the transcript of the video.
+- Click Submit.
 
-- Splitting: The transcript is divided into smaller chunks using RecursiveCharacterTextSplitter to fit within the LLM's context window.
+- The tool will display the scraped job description and the generated cold email.
 
-- Embedding: These chunks are converted into numerical vectors (embeddings).
+## 📂 Project Structure
+```bash
+Gen-Ai-project-Cold-Email-Generator/
+├── app/
+│   ├── main.py          # Main Streamlit application
+│   ├── chains.py        # LLM chains and prompt templates
+│   ├── portfolio.py     # Logic for querying ChromaDB
+│   └── utils.py         # Utility functions (text cleaning, scraping)
+├── my_portfolio.csv     # Database of your projects/case studies
+├── requirements.txt     # Python dependencies
+├── .env                 # API keys (excluded from git)
+└── README.md            # Project documentation
+```
 
-- Storage: The vectors are stored locally in a FAISS index.
-
-- Retrieval: When you ask a question, the system finds the vectors most similar to your query.
-
-- Generation: The relevant text chunks + your question are sent to the LLM, which generates a natural language response.
-
-
+## 📄 License
+This project is open-source.
 
