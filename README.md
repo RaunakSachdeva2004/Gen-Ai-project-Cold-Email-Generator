@@ -1,36 +1,100 @@
-# 📧 Cold Mail Generator
-Cold email generator for services company using groq, langchain and streamlit. It allows users to input the URL of a company's careers page. The tool then extracts job listings from that page and generates personalized cold emails. These emails include relevant portfolio links sourced from a vector database, based on the specific job descriptions. 
+# 🦜🔗 RAG YouTube Chatbot Using LangChain
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://genai-cold-email-generatorr.streamlit.app/)
+A powerful Retrieval-Augmented Generation (RAG) application that allows users to "chat" with any YouTube video. By simply providing a video URL, the system processes the transcript and lets you ask questions, receiving accurate answers based specifically on the video's content.
 
-**[View Live Demo](https://genai-cold-email-generatorr.streamlit.app/)**
+## 📖 Overview
 
-**Imagine a scenario:**
+This project leverages LangChain to orchestrate a RAG pipeline. It extracts transcripts from YouTube videos, chunks the text, creates vector embeddings, and stores them in a FAISS vector database. When a user asks a question, the system retrieves the most relevant context from the video and uses a Large Language Model (LLM) to generate a precise answer.
 
-- Nike needs a Principal Software Engineer and is spending time and resources in the hiring process, on boarding, training etc
-- Atliq is Software Development company can provide a dedicated software development engineer to Nike. So, the business development executive (Mohan) from Atliq is going to reach out to Nike via a cold email.
+## ✨ Key Features
 
-![img.png](images/image1)
+- **🎥 YouTube Transcript Loading:** Automatically fetches and processes captions from YouTube videos.
+- **🧠 Intelligent Text Splitting:** Uses recursive character splitting to maintain context across chunks.
+- **🔍 Vector Search:** Implements FAISS (Facebook AI Similarity Search) for high-speed, local similarity search.
+- **🤖 LLM Integration:** Supports integration with top-tier LLMs via OpenRouter or Google Gemini.
+- **💬 Interactive UI:** Built with Streamlit for a seamless, chat-like experience.
+- **💾 Session Memory:** Maintains conversation history within the session.
 
-## Architecture Diagram
-![img.png](images/architecture.png)
+## 🛠️ Tech Stack
 
-## Set-up
-1. To get started we first need to get an API_KEY from here: https://console.groq.com/keys. Inside `app/.env` update the value of `GROQ_API_KEY` with the API_KEY you created. 
+- **Language:** Python
+- **Orchestration:** LangChain
+- **Frontend:** Streamlit
+- **Vector Store:** FAISS
+- **Embeddings:** HuggingFace / OpenAI / Google Generative AI
+- **Utilities:** youtube-transcript-api, python-dotenv
+
+## 🚀 Getting Started
+
+Follow these instructions to set up the project on your local machine.
+
+### Prerequisites
+
+- Python 3.8 or higher
+- Git
+
+### Installation
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/RaunakSachdeva2004/RAG-Youtube-Chatbot-Using-Langchain.git
+cd RAG-Youtube-Chatbot-Using-Langchain
+```
 
 
-2. To get started, first install the dependencies using:
-    ```commandline
-     pip install -r requirements.txt
-    ```
-   
-3. Run the streamlit app:
-   ```commandline
-   streamlit run app/main.py
-   ```
-   
+## 2. Create a Virtual Environment (Recommended)
 
-Copyright (C) Codebasics Inc. All rights reserved.
+### Windows
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-**Additional Terms:**
-This software is licensed under the MIT License. However, commercial use of this software is strictly prohibited without prior written permission from the author. Attribution must be given in all copies or substantial portions of the software.
+## 3. macOS/Linux
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+## 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## 4. Set Up Environment Variables
+Create a .env file in the root directory of the project. You will need an API key for the LLM service you intend to use.
+
+### .env file content
+
+### If using OpenRouter
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+### If using Google Gemini
+GOOGLE_API_KEY=your_google_api_key_here
+
+
+
+#### To use the Chatbot:
+
+- Paste a valid YouTube video URL into the sidebar input field.
+- Click the "Process Video" button.
+- Wait for the system to download the transcript and build the vector index.
+- Once processing is complete, type your question in the chat input box and hit Enter!
+
+  ## 🧩 How It Works
+- Ingestion: The app uses YoutubeLoader to get the transcript of the video.
+
+- Splitting: The transcript is divided into smaller chunks using RecursiveCharacterTextSplitter to fit within the LLM's context window.
+
+- Embedding: These chunks are converted into numerical vectors (embeddings).
+
+- Storage: The vectors are stored locally in a FAISS index.
+
+- Retrieval: When you ask a question, the system finds the vectors most similar to your query.
+
+- Generation: The relevant text chunks + your question are sent to the LLM, which generates a natural language response.
+
+
+
