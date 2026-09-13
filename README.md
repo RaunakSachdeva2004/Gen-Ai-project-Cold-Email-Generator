@@ -2,6 +2,22 @@
 
 A Generative AI application designed to help software services companies and freelancers automate their cold outreach. By analyzing a potential client's job posting URL, this tool identifies their specific needs and generates a personalized cold email that showcases relevant projects from your portfolio.
 
+**Imagine a scenario:**
+
+- Nike needs a Principal Software Engineer and is spending time and resources in the hiring process, on boarding, training etc
+- Atliq is Software Development company can provide a dedicated software development engineer to Nike. So, the business development executive (Mohan) from Atliq is going to reach out to Nike via a cold email.
+
+![img.png](images/image1)
+
+## Architecture Diagram
+![img.png](images/architecture.png)
+
+## Project Metrics
+- **Portfolio Database:** 20 distinct technology stacks indexed and categorized for precise similarity matching.
+- **AI Model:** Powered by Groq's `llama-3.3-70b-versatile` for high-speed, accurate job extraction and email generation.
+- **Vector Database:** Utilizes ChromaDB for local, persistent vector storage, enabling fast semantic searches on portfolios.
+- **Codebase Size:** Lean and maintainable core application built with under 150 lines of Python code (`app.py`, `chains.py`, `portfolio.py`, `utils.py`).
+
 
 ## 📖 Overview
 
